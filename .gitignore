@@ -1,0 +1,15 @@
+# Android
+android-companion/.gradle/
+android-companion/app/build/
+android-companion/build/
+android-companion/local.properties
+*.apk
+*.aab
+*.jks
+*.keystore
+
+# Connect IQ widget build output
+edge-widget/bin/
+
+# macOS
+.DS_Store
