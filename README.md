@@ -1,15 +1,36 @@
-# Garmin Edge 830 Audio Remote
+# Garmin Edge Audio Remote
 
-Ovláda prehrávanie audiokníh/podcastov (Smart AudioBook Player, Pocket Casts)
-priamo z widgetu na Edge 830 — play/pauza, -10s, +10s, s lineárnym progress
-barom a názvom titulu. Skladá sa z dvoch častí, ktoré musia bežať súčasne:
+🇬🇧 [Read this in English](README.en.md)
 
-- `edge-widget/` — Connect IQ widget pre Edge 830 (Monkey C)
-- `android-companion/` — Android appka, ktorá beží na pozadí telefónu a
-  preposiela príkazy do MediaSession prehrávača (Kotlin)
+Vlastný Connect IQ widget pre cyklopočítače Garmin Edge (530, 830, 1030,
+1030 Plus), ktorý cez sprievodnú Android appku ovláda prehrávanie
+audiokníh a podcastov (Smart AudioBook Player, Pocket Casts) priamo z
+displeja hodiniek — play/pauza, -10s, +10s, skok na ďalšiu položku vo
+fronte, s progress barom a názvom titulu.
 
-Komunikujú cez `Toybox.Communications` / Garmin Connect IQ Mobile SDK —
-**nie** cez Bluetooth AVRCP (to Garmin tretím stranám blokuje).
+## Prečo to existuje
+
+Staršie generácie Edge (530/830/1030) nemajú natívny "Music Controls"
+widget (ten pribudol až od 540/840). Garmin navyše blokuje tretím stranám
+posielanie Bluetooth AVRCP príkazov (play/pause/seek) do systémového
+prehrávača telefónu — takže bežný Connect IQ widget by sa k prehrávaču
+vôbec nedostal.
+
+## Ako to funguje
+
+Riešenie obchádza AVRCP blok tak, že vôbec Bluetooth médiové príkazy
+nepoužíva — pozostáva z dvoch častí, ktoré musia bežať súčasne:
+
+- `edge-widget/` — Connect IQ widget (Monkey C), zobrazuje titul,
+  progress bar a 4 tlačidlá (-10s, next-in-queue, +10s, play/pause).
+- `android-companion/` — Android appka (Kotlin), ktorá beží na pozadí
+  telefónu a cez `MediaSessionManager`/`NotificationListenerService`
+  priamo ovláda `MediaSession` cieľovej appky — to je systémové API, nie
+  Bluetooth, takže Garminov AVRCP blok sa netýka.
+
+Widget a appka spolu komunikujú cez `Toybox.Communications` / Garmin
+Connect IQ Mobile SDK, napojené na existujúce párovanie hodiniek v appke
+Garmin Connect Mobile.
 
 ## 1. Widget na Edge 830
 
