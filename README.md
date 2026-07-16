@@ -32,6 +32,27 @@ Widget a appka spolu komunikujú cez `Toybox.Communications` / Garmin
 Connect IQ Mobile SDK, napojené na existujúce párovanie hodiniek v appke
 Garmin Connect Mobile.
 
+## Rýchla inštalácia (bez vývojárskych nástrojov)
+
+Ak len chceš appku používať a nepotrebuješ nič upravovať v kóde, netreba
+inštalovať Android Studio ani Connect IQ SDK — stačia hotové súbory zo
+sekcie [Releases](https://github.com/romanbaranovic/garmin-audio-remote/releases):
+
+1. Stiahni `.prg` súbor pre svoje zariadenie (`AudioRemote-edge530.prg`,
+   `AudioRemote-edge830.prg`, `AudioRemote-edge1030.prg` alebo
+   `AudioRemote-edge1030plus.prg`).
+2. Pripoj Edge cez USB k počítaču, zobrazí sa ako disk `GARMIN`, a
+   skopíruj stiahnutý `.prg` do `GARMIN/Apps/`. Po odpojení USB by mal
+   widget pribudnúť do widget loopu.
+3. Stiahni `AudioRemote-companion.apk` a nainštaluj ho na telefón (treba
+   povoliť inštaláciu z neznámych zdrojov, keďže appka nie je na Google
+   Play).
+4. Postupuj podľa sekcie [Nastavenie po inštalácii](#nastavenie-po-inštalácii-jednorazovo)
+   nižšie (povolenie notifikácií, vypnutie battery optimization).
+
+Zvyšok tohto README je určený pre vývojárov, ktorí chcú appku zostaviť
+sami zo zdrojového kódu.
+
 ## 1. Widget na Edge 830
 
 ### Predpoklady

@@ -33,6 +33,28 @@ The widget and the app communicate over `Toybox.Communications` / the
 Garmin Connect IQ Mobile SDK, riding on the watch's existing pairing in
 the Garmin Connect Mobile app.
 
+## Quick install (no developer tools needed)
+
+If you just want to use the app and don't need to modify any code, you
+don't need to install Android Studio or the Connect IQ SDK — the
+prebuilt files on the [Releases page](https://github.com/romanbaranovic/garmin-audio-remote/releases)
+are all you need:
+
+1. Download the `.prg` file for your device (`AudioRemote-edge530.prg`,
+   `AudioRemote-edge830.prg`, `AudioRemote-edge1030.prg`, or
+   `AudioRemote-edge1030plus.prg`).
+2. Connect the Edge via USB, it will show up as a `GARMIN` drive, and
+   copy the downloaded `.prg` into `GARMIN/Apps/`. After disconnecting
+   USB, the widget should appear in the widget loop.
+3. Download `AudioRemote-companion.apk` and install it on your phone
+   (you'll need to allow installs from unknown sources, since the app
+   isn't on Google Play).
+4. Follow the [one-time setup](#one-time-setup-after-install) section
+   below (notification access, disabling battery optimization).
+
+The rest of this README is for developers who want to build the app
+themselves from source.
+
 ## 1. Widget on the Edge
 
 ### Prerequisites
